@@ -6,9 +6,13 @@ struct ContentView: View {
     @State var roboFingers = [true, true, true]
     @State var myFingers = [true, true, true]
     
+//    PopUp
+    @State var popup = true
+    
 //    Hand
     @State var roboHand = "3fing2"
     @State var myHand = "3fing"
+    
 //    Win Lose
     @State var show = false
     @State var done = false
@@ -56,6 +60,12 @@ struct ContentView: View {
                 }
                 else {
                     DrawPopUpView(show: $show, roboFingers: $roboFingers, roboHand: $roboHand, myFingers: $myFingers, myHand: $myHand, done: $done, win: $win, lose: $lose)
+                }
+            }
+            
+            VStack {
+                if popup {
+                    Intros(popup: $popup)
                 }
             }
             
@@ -495,13 +505,13 @@ struct ModalViews: View {
                             show.toggle()
                         }
                     }) {
-                        Text("Okay, Cool !")
+                        Text("Okay, Got It !")
                             .font(Font.system(size: 20, weight: .bold))
                     }
                     .padding(.horizontal, 40)
                     .padding(.vertical, 10)
                     .foregroundColor(Color.white)
-                    .background(Color.red)
+                    .background(Color.blue)
                     .cornerRadius(10)
                 }
                 
@@ -525,4 +535,48 @@ struct blurView : UIViewRepresentable {
         
     }
     
+}
+
+struct Intros: View {
+    
+    @Binding var popup: Bool
+    
+    var body: some View {
+        ZStack {
+            blurView()
+                .ignoresSafeArea(.all)
+            ZStack {
+                Color.white
+                
+                VStack (spacing: 20){
+                    Text("IntroDuction")
+                        .font(Font.system(size: 30, weight: .bold))
+                    
+                    VStack (alignment: .leading, spacing: 10) {
+
+                        Text("Elephant-Man-Ant is a traditional game from China. The thumb represents the elephant, the index finger represents the person and the little finger represents the ant. Elephants are afraid of ants because ants can get into elephants' ears, people are afraid of elephants because elephants can step on people and so are ants who are afraid of people.")
+                            .font(Font.system(size: 20))
+                            .padding(.horizontal, 50)
+                    }.padding(.vertical, 40)
+                   
+                    Button(action: {
+                        withAnimation {
+                            playSfx(key: "click")
+                            popup.toggle()
+                        }
+                    }) {
+                        Text("Okay, Cool !")
+                            .font(Font.system(size: 20, weight: .bold))
+                    }
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 10)
+                    .foregroundColor(Color.white)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                }
+                
+            }.frame(width: 650, height: 450, alignment: .center)
+                .cornerRadius(20)
+        }
+    }
 }

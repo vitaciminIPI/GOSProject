@@ -194,7 +194,7 @@ struct ThreeOption: View {
             HStack (spacing: 10) {
                 
                 if !isPressed[0] {
-                    Button("Gajah 🐘") {
+                    Button("Elephant 🐘") {
                         
                         playSfx(key: "click")
                         
@@ -235,7 +235,7 @@ struct ThreeOption: View {
                     .disabled(done)
                 }
                 if !isPressed[1] {
-                    Button("Orang 👱‍♂️") {
+                    Button("Human 👱‍♂️") {
                         
                         playSfx(key: "click")
                         
@@ -269,6 +269,7 @@ struct ThreeOption: View {
                         }
                     }
                     .padding(.all, 20)
+                    .padding(.horizontal, 15)
                     .foregroundColor(Color.black)
                     .font(Font.system(size: 32, weight: .bold))
                     .background(Color.white)
@@ -276,7 +277,7 @@ struct ThreeOption: View {
                     .disabled(done)
                 }
                 if !isPressed[2] {
-                    Button("Semut 🐜") {
+                    Button("Ant 🐜") {
                         
                         playSfx(key: "click")
                         
@@ -310,6 +311,7 @@ struct ThreeOption: View {
                         }
                     }
                     .padding(.all, 20)
+                    .padding(.horizontal, 40)
                     .foregroundColor(Color.black)
                     .font(Font.system(size: 32, weight: .bold))
                     .background(Color.white)
